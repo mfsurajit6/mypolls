@@ -1,7 +1,7 @@
 from django.urls import path
 from polls.views import DetailView, IndeXView, ResultView, vote
 
-app_name ="polls"
+# app_name ="polls"
 
 urlpatterns = [
     path('', IndeXView.as_view(), name='index'),
