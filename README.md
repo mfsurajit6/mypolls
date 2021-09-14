@@ -7,9 +7,9 @@ This is a project I build while learning Django. Codes are referenced deom the o
 ---
 ## Specification
 
-Django 3.2.7
-sqlite3
-python-decouple-3.4
+- Django 3.2.7
+- sqlite3
+- python-decouple-3.4
 
 
 ## Contributors
