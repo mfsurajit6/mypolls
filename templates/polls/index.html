@@ -9,6 +9,12 @@
     <title>Active Polls</title>
 </head>
 <body>
+    <br>
+    {% if request.user.is_authenticated %}
+        Hello, <span>{{request.user}}</span> &nbsp;
+        <a href="{% url 'logout' %}">Log Out</a>
+    {% endif %}
+    <br>
     <fieldset>
         <legend><h1> Active Polls</h1></legend>
         {% if latest_question_list %}
