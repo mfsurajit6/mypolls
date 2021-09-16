@@ -16,12 +16,6 @@ form.addEventListener("submit", (e) => {
 
   let error = false;
 
-
-  console.log("Submit Clicked");
-  console.log(
-    "Data: " + username + " " + email + " " + password + " " + cpassword
-  );
-
   
   if (username === "" || username == null) {
     name_error.innerHTML = "Name is required";

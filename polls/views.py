@@ -38,7 +38,6 @@ def vote(request, question_id):
     """ Performs voting for a poll """
 
     user = request.user
-    print(user)
     if not user.is_authenticated:
         return redirect('login')
 
