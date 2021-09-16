@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polls || User Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pageTitle%}
     <h1>Sign In</h1>
-    <label>{{ error }}</label>
-    <form method="POST" action="{% url 'login' %}">
+{% endblock%}
+
+{% block bodyContent %}
+    <label class="text-danger">{{ error }}</label>
+    <form id="login_form" method="POST" action="{% url 'login' %}">
         {%csrf_token%}
-        <table>
-            <tr>
-                <td><label for="email">Email</label></td>
-                <td><input type="email" name="email" id="email" required></td>
-                <td><label id="email_error"></label></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password</label></td>
-                <td><input type="password" name="password" id="password" required></td>
-                <td><label id="password_error"></label></td>
-            </tr>
-            <tr>
-                <td colspan="3"><input type="submit" value="Sign in"></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control"></td>
+            <label id="email_error" class="text-danger"></label>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label></td>
+            <input type="password" name="password" id="password" class="form-control"></td>
+            <label id="password_error" class="text-danger"></label>
+        </div>
+        <input type="submit" value="Sign in" class="btn btn-info form-control">
     </form>
-    <label>Don't have an Account? <a href="{% url 'register' %}">Register</a></label>
-</body>
-</html>
+    <label class="d-block text-center mt-4">Don't have an Account? <a href="{% url 'register' %}">Register</a></label>
+{% endblock %}
+
+{% block jsContent %}
+    <script src="{% static 'js/loginValidator.js'%}"></script>
+{% endblock  %}

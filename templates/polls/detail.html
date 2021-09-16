@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poll Details</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block pageTitle%}
+    <div class="d-flex align-items-center justify-content-between">
+        <h1>Vote</h1>
+        {% if request.user.is_authenticated %}
+            <div>
+                <p class="m-0">Hello, {{request.user}}</p>
+                <a href="{% url 'logout' %}">Log Out</a>
+            </div>
+        {% endif %}
+    </div>
+    
+{% endblock%}
+
+{% block bodyContent %}
     <form action="{% url 'vote' question.id %}" method="post">
         {% csrf_token %}
-        <fieldset>
-            <legend><h1>{{ question.question_text }}</h1></legend>
-            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <h4>{{ question.question_text }}</h4>
+            {% if error_message %}<p class="text-danger">{{ error_message }}</p>{% endif %}
             {% for choice in question.choice_set.all %}
                 <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
                 <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
             {% endfor %}
-        </fieldset>
-        <input type="submit" value="Vote">
+
+        <input type="submit" value="Vote" class="btn btn-info mt-2">
     </form>
-</body>
-</html>
+    <a href="{% url 'index' %}" style="float: right; text-decoration: none; ">Back</a>
+
+{% endblock %}

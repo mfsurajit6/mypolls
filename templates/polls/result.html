@@ -1,11 +1,38 @@
-<h1>{{ question.question_text }}</h1>
+{% extends 'base.html' %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+{% block pageTitle%}
+    <div class="d-flex align-items-center justify-content-between">
+        <h1>Result</h1>
+        {% if request.user.is_authenticated %}
+            <div>
+                <p class="m-0">Hello, {{request.user}}</p>
+                <a href="{% url 'logout' %}">Log Out</a>
+            </div>
+        {% endif %}
+    </div>
+    
+{% endblock%}
 
-<a href="{% url 'detail' question.id %}">Vote again?</a>
-&nbsp;
-<a href="{% url 'index' %}">Back to home</a>
+{% block bodyContent %}
+
+    <h4>{{ question.question_text }}</h4>
+    <table class="table">
+        <tr>
+            <th>Options</td>
+            <th>Votes</th>
+        </tr>
+        {% for choice in question.choice_set.all %}
+            <tr>
+                <td>{{ choice.choice_text }}</td>
+                <td>{{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'detail' question.id %}">Vote again</a>
+        <a href="{% url 'index' %}">Back to home</a>
+    </div>
+    
+
+{% endblock %}
