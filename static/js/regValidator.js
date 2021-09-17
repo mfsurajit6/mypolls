@@ -38,7 +38,6 @@ form.addEventListener("submit", (e) => {
     password_error.innerHTML = "Password is required";
     error = true;
   } else if (password.length < 6) {
-    alert("Hello");
     password_error.innerHTML = "Password must have 6 or more character";
     error = true;
   } else {
