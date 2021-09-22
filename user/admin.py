@@ -3,7 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 
 from user.models import User
 
-class CustomUserAdmin(UserAdmin):
+class CustomUserAdmin(admin.ModelAdmin):
+    exclude = ('groups', 'user_permissions', )
     list_display = (
         'id', 'name', 'email', 'is_active'
     )
